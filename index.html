@@ -82,7 +82,7 @@ Feature: News is current
     Then I run cron
     When I go to the homepage
     Then I should see the heading "Current News"
-*   And the datetime in region "news_publish_date" is not older than 4 hours
+    And the datetime in region "news_publish_date" is not older than 4 hours
 ```
 
 ???
@@ -94,20 +94,20 @@ Feature: News is current
 ---
 # Copy-and-Paste Suggestion into FeatureContext.php
 
-```diff
+```Php
 1 scenario (1 undefined)
 5 steps (4 passed, 1 undefined)
 0m1.04s (29.71Mb)
 
 --- FeatureContext has missing steps. Define them with these snippets:
 
-*    /**
-*     * @Then the datetime in region :arg1 is not older than :arg2 hours
-*     */
-*    public function theDatetimeInRegionIsNotOlderThanHours($arg1, $arg2)
-*    {
-*        throw new PendingException();
-*    }
+    /**
+     * @Then the datetime in region :arg1 is not older than :arg2 hours
+     */
+    public function theDatetimeInRegionIsNotOlderThanHours($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
 
 ```
 
@@ -120,22 +120,22 @@ FeatureContext.php
    * @Then the datetime in region :region is not older than :hours hours
    */
   public function theDatetimeInRegionIsNotOlderThanHours($region, $hours) {
-*    // Get the region where a date string is supposed to be
-*    $region_object = $this->getSession()->getPage()->find('region', $region);
-*    if (!$region_object) {
-*      throw new \Exception(sprintf('No region "%s" found on the page %s.',
-*        $region, $this->getSession()->getCurrentUrl()));
-*    }
-*
-*    // Get region date string and convert to unix timestamp
-*    $date_string = $region_object->getText();
-*    $timestamp = strtotime($date_string);
-*
-*    // Compare region and current timestamps  
-*    if (time() - $timestamp > $hours * 3600) {
-*     throw new \Exception(sprintf('Datetime in "%s" is older then %s hours',
-*        $region, $hours));
-*    }
+    // Get the region where a date string is supposed to be
+    $region_object = $this->getSession()->getPage()->find('region', $region);
+    if (!$region_object) {
+      throw new \Exception(sprintf('No region "%s" found on the page %s.',
+        $region, $this->getSession()->getCurrentUrl()));
+    }
+
+    // Get region date string and convert to unix timestamp
+    $date_string = $region_object->getText();
+    $timestamp = strtotime($date_string);
+
+    // Compare region and current timestamps  
+    if (time() - $timestamp > $hours * 3600) {
+     throw new \Exception(sprintf('Datetime in "%s" is older then %s hours',
+        $region, $hours));
+    }
   }
 ```
 ???
@@ -175,7 +175,7 @@ FeatureContext.php
     </script>
     <script type="text/javascript">
       var slideshow = remark.create({
-        highlightLines: true,
+        highlightLines: false,
         highlightStyle: "tomorrow-night-bright" 
       });
     </script>
